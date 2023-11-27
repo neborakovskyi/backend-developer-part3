@@ -76,7 +76,7 @@ namespace Common
             Console.WriteLine("=");
             PrintMatrix(matrixC);
         }
-        
+
         private static void PrintMatrix(int[,] matrix)
         {
             for (var i = 0; i < matrix.RowsCount(); i++)
@@ -88,6 +88,11 @@ namespace Common
 
                 Console.WriteLine();
             }
+        }
+
+        public static void Swap(int[] array, int i, int j)
+        {
+            (array[i], array[j]) = (array[j], array[i]);
         }
     }
 }
