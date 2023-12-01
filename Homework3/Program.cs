@@ -1,4 +1,6 @@
 ﻿using System.Reflection.Metadata.Ecma335;
+using Patterns.Creational;
+using Patterns.Structural;
 
 namespace CreationalPatterns
 {
@@ -9,6 +11,17 @@ namespace CreationalPatterns
             Builder();
 
             FactoryMethod();
+
+            Adapter();
+        }
+
+        private static void Adapter()
+        {
+            var stockDataProvider = new StockDataProvider();
+            var analyticsLibrary = new AdapterStockDataProviderToAnalyticsLibrary(stockDataProvider);
+
+            Console.WriteLine(stockDataProvider.RequestXml());
+            Console.WriteLine(analyticsLibrary.RequestJson());
         }
 
         private static void FactoryMethod()
@@ -22,7 +35,7 @@ namespace CreationalPatterns
                 Console.WriteLine("any key - exit");
 
                 var type = Console.ReadLine();
-                var logistic = GetLogistic(type);
+                var logistic = GetLogistic((string.IsNullOrEmpty(type) ? null : type)!);
                 if (logistic == null)
                 {
                     return;
